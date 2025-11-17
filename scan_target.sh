@@ -12,7 +12,7 @@ if [ "$1" ]; then
         echo -e "[+] Proceeding to scan them (agressive): "
         echo -e "[+] Running: $SERVICE_SCAN_COMMAND"
         $SERVICE_SCAN_COMMAND
-        if [ "$!" -eq 0 ]; then
+        if [ "$?" -eq 0 ]; then
                 echo -e "\t[+] Scan succeeded!"
                 echo -e "\t[+] You can see the results in three formats: $SERVICE_SCAN_REPORT"
         else
