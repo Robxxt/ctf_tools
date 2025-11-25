@@ -1,10 +1,10 @@
 #!/bin/bash
 
 PORTS=""
-SERVICE_SCAN_REPORT="service_scan_report"
 
 if [ "$1" ]; then
         TARGET="$1"
+        SERVICE_SCAN_REPORT="scan_$TARGET"
         echo -e "\n[+] Scanning open ports in $TARGET"
         PORTS="$(nmap -sS -p- $TARGET -T5 | awk '{print $1}' | awk -F/ '{print $1}' | egrep -v '[a-zA-Z]' | xargs | tr ' ' ',')"
         SERVICE_SCAN_COMMAND="nmap -Pn -sS -sV -sC -T5 -p$PORTS $TARGET -oA $SERVICE_SCAN_REPORT"
