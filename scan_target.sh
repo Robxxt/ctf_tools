@@ -8,7 +8,7 @@ if [ "$1" ]; then
         echo -e "\n[+] Scanning open ports in $TARGET"
         PORTS="$(nmap -sS -p- $TARGET -T5 | awk '{print $1}' | awk -F/ '{print $1}' | egrep -v '[a-zA-Z]' | xargs | tr ' ' ',')"
         SERVICE_SCAN_COMMAND="nmap -Pn -sS -sV -sC -T5 -p$PORTS $TARGET -oA $SERVICE_SCAN_REPORT"
-        echo -e "\n\t[+] Next ports are open: $PORTS"
+        echo -e "\n[+] Next ports are open: $PORTS"
         echo -e "[+] Proceeding to scan them (agressive): "
         echo -e "[+] Running: $SERVICE_SCAN_COMMAND"
         $SERVICE_SCAN_COMMAND
